@@ -1,0 +1,20 @@
+---
+language: python
+python: "2.7"
+env:
+  - ANSIBLE_VERSION=1.4.2
+  - ANSIBLE_VERSION=1.5.0
+  - ANSIBLE_VERSION=1.6.0
+  - ANSIBLE_VERSION=1.7.0
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq python-apt python-pycurl
+install:
+  - pip install ansible==$ANSIBLE_VERSION -q
+script:
+  - echo localhost > inventory
+  - ansible-playbook -i inventory --syntax-check test.yml
+  - ansible-playbook -i inventory --connection=local --sudo -v --diff test.yml
+  - for i in `sudo find /etc/redis -type f`;do echo ===== $i =====;sudo cat $i;echo;done
+  - ansible-playbook -i inventory --connection=local --sudo -v --diff test.yml | tee check.out
+  - "if [ `cat check.out | grep 'PLAY RECAP' -A 2 | grep 'changed=0' | wc -l ` -ne 1 ] ;then false;fi"

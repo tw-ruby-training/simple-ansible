@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: sdnny
+  description: "Install redis-server"
+  company: sdnny
+  license: MIT
+  min_ansible_version: 1.4
+  platforms:
+  - name: Ubuntu
+    versions:
+    - precise
+  categories:
+  - networking
+dependencies: []

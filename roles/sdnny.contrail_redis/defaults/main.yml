@@ -1,0 +1,12 @@
+---
+contrail_redis_name: "server"
+contrail_redis_user: "redis"
+contrail_redis_group: "redis"
+contrail_redis_uid: 1223
+contrail_redis_gid: 1223
+contrail_redis_user_dir: "/var/lib/{{contrail_redis_user}}"
+contrail_redis_run_dir: "/var/run/{{contrail_redis_user}}"
+contrail_redis_log_dir: "/var/log/{{contrail_redis_user}}"
+contrail_redis_version: "2.6.13-1"
+contrail_redis_listen_ip: 0.0.0.0
+contrail_redis_listen_port: 6379
