@@ -3,6 +3,8 @@
   hosts: webservers
   user: vagrant
   sudo: true
+  roles:
+    - joshualund.ruby-2_1 
   tasks:
     - name: install nginx
       apt: name=nginx update_cache=yes
