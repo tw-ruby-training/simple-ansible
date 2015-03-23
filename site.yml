@@ -1,8 +1,9 @@
 ---
-- name: Install nginx
+- name: Install nginx, ruby, memcached, mysql
   hosts: webservers
   sudo: True
   roles:
     - ruby
     - nginx
     - memcached
+    - mysql
