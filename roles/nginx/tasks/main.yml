@@ -1,0 +1,19 @@
+---
+# Configure webserver with nginx and ssl
+
+- name: Install nginx
+  apt: name=nginx update_cache=yes
+- name: create directories for ssl certificates
+  file: path=/etc/nginx/ssl state=directory
+- name: copy SSL key
+  copy: src=nginx.key dest={{ key_file }} owner=root mode=0600
+  notify: restart nginx
+- name: copy SSL certificate
+  copy: src=nginx.crt dest={{ cert_file }}
+  notify: restart nginx
+- name: copy nginx config file
+  template: src=default.conf.j2 dest={{ conf_file }}
+  notify: restart nginx
+- name: enable configuration
+  file: dest=/etc/nginx/sites-enabled/default src={{ conf_file }} state=link
+  notify: restart nginx

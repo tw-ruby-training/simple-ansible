@@ -1,0 +1,6 @@
+---
+- name: Install nginx
+  hosts: webservers
+  sudo: True
+  roles:
+    - nginx
