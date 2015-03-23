@@ -1,0 +1,31 @@
+---
+ruby_version: ruby-2.1.2
+ruby_checksum: f22a6447811a81f3c808d1c2a5ce3b5f5f0955c68c9a749182feb425589e6635
+ruby_download_location: http://cache.ruby-lang.org/pub/ruby/2.1/{{ ruby_version }}.tar.gz
+
+ruby_apt_dependencies:
+  - libreadline-dev
+  - libssl-dev
+  - libyaml-dev
+  - zlib1g-dev
+
+ruby_yum_dependencies:
+  - readline-devel
+  - openssl-devel
+  - libyaml-devel
+  - zlib-devel
+
+ruby_symlinks:
+  - bundle
+  - erb
+  - gem
+  - irb
+  - rake
+  - rdoc
+  - ri
+  - ruby
+  - testrb
+
+ruby_location: "/opt/{{ ruby_version }}"
+
+ruby_executable: "{{ ruby_location }}/bin/ruby"

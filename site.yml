@@ -3,4 +3,5 @@
   hosts: webservers
   sudo: True
   roles:
+    - ruby
     - nginx
