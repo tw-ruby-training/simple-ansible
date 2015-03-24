@@ -1,0 +1,36 @@
+---
+- name: Configure webserver with nginx
+  hosts: webservers
+  user: vagrant
+  sudo: true
+  vars:
+    key_file: /etc/nginx/ssl/nginx.key
+    cert_file: /etc/nginx/ssl/nginx.crt
+    conf_file: /etc/nginx/sites-available/default
+    server_name: localhost
+  tasks:
+    - name: install libselinux-python
+      yum: name=libselinux-python
+    - name: install nginx
+      yum: name=nginx.x86_64 state=latest
+    - name: create directories for ssl certificates
+      file: path=/etc/nginx/ssl state=directory
+    - name: copy ssl key
+      copy: src=files/nginx.crt dest={{ cert_file }}
+    - name: copy ssl key
+      copy: src=files/nginx.key dest={{ key_file }} owner=root mode=0600
+      notify: restart nginx
+    - name: copy nginx config file
+      template: src=templates/nginx.conf.j2 dest={{ conf_file }}
+      notify: restart nginx
+    - name: create config directory
+      file: path=/etc/nginx/sites-enabled state=directory
+    - name: enable configuration
+      file: >
+        dest=/etc/nginx/sites-enabled/default
+        src={{ conf_file }}
+        state=link
+      notify: restart nginx
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted
