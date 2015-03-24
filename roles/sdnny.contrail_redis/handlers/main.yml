@@ -1,6 +1,0 @@
----
-- name: "restart redis-{{contrail_redis_name}}"
-  service:
-    name: "redis-{{contrail_redis_name}}"
-    state: restarted
-
