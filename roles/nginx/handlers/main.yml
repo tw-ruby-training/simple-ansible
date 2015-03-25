@@ -1,0 +1,5 @@
+---
+-   name: ReloadNginx
+    service: name="nginx" state="reloaded"
+    environment:
+      PATH: "/sbin:/bin:/usr/local/bin:/usr/bin"

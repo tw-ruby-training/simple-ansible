@@ -1,0 +1,10 @@
+---
+- name: Add ruby repository
+  command: apt-add-repository ppa:brightbox/ruby-ng
+  command: apt-get update
+
+- name: Install ruby 2.1
+  apt: name={{item}}
+  with_items:
+    - ruby2.1
+    - ruby2.1-dev

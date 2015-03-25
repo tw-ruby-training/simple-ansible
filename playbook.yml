@@ -1,0 +1,9 @@
+---
+- hosts: webservers
+  user: root
+  sudo: yes
+  roles:
+    - ruby
+    - nginx
+    - memcached
+    - mysql

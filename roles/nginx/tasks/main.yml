@@ -1,0 +1,16 @@
+---
+- name: Install nginx
+  apt: name=nginx state=latest
+
+- name: Replace nginx configuration file
+  copy: src=nginx.conf dest=/usr/share/nginx/nginx.conf
+
+- name: Create new folder under nginx
+  command: mkdir -p /usr/share/nginx/html
+
+- name: Replace index page
+  copy: src=index.html dest=/usr/share/nginx/html/index.html
+  notify: ReloadNginx
+
+- name: Enable and start nginx service
+  service: name=nginx enabled=yes state=started
