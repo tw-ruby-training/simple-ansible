@@ -5,6 +5,7 @@
   roles:
     - role: ruby
     - role: nginx
+    - role: memcached
 
   vars:
     - rbenv_root: /usr/local/rbenv
