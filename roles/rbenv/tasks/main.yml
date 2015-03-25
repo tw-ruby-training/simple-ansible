@@ -1,0 +1,14 @@
+---
+- name: install git
+  yum: name=git.x86_64 state=latest
+- name: checkout rbenv
+  git: repo=https://github.com/sstephenson/rbenv.git dest=~/.rbenv
+- name: checkout ruby build
+  git: repo=https://github.com/sstephenson/ruby-build.git dest=~/.rbenv/plugins/ruby-build
+- name: install openssl
+  sudo: true
+  yum: name=openssl-devel state=latest
+- name: install ruby
+  command: ~/.rbenv/bin/rbenv install --skip-existing 2.1.2
+  notify: prepare rbenv init
+  notify: rbenv init

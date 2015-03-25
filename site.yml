@@ -1,0 +1,29 @@
+---
+- name: install webservers
+  hosts: webservers
+  remote_user: vagrant
+  roles:
+    - common
+    - nginx
+
+- name: install database node
+  hosts: webservers
+  remote_user: vagrant
+  roles:
+    - common
+    - mysql
+
+- name: install application node
+  hosts: webservers
+  remote_user: vagrant
+  roles:
+    - common
+    - rbenv
+
+- name: install cache node
+  hosts: webservers
+  remote_user: vagrant
+  roles:
+    - common
+    - memcached
+

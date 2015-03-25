@@ -1,0 +1,17 @@
+- name: install nginx
+  yum: name=nginx.x86_64 state=latest
+  notify: restart nginx
+- name: copy nginx config file
+  sudo: true
+  copy: src=sites-available dest=/etc/nginx/ 
+  notify: restart nginx
+- name: enable configuration
+  sudo: true
+  file: >
+    dest=/etc/nginx/sites-enabled/default
+    src=/etc/nginx/sites-available/default
+    state=link
+  notify: restart nginx
+- name: copy index.html
+  copy: src=index.html dest=/usr/share/nginx/html/index.html mode=0644
+  notify: restart nginx

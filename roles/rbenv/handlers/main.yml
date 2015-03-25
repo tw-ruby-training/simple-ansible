@@ -1,0 +1,4 @@
+- name: prepare rbenv init
+  copy: src=files/rbenv.sh dest=~/ mode=0777
+- name: rbenv init
+  shell: ./rbenv.sh

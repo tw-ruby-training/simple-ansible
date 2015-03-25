@@ -1,4 +1,0 @@
----
-- name: Configure webserver
-  hosts: webservers
-  sudo: true

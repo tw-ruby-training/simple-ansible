@@ -1,0 +1,4 @@
+---
+- name: install memcached
+  yum: name=memcached.x86_64 state=latest
+  notify: restart memcached
