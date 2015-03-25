@@ -1,5 +1,3 @@
-# Simple Ansible
+# Sample Ansible
 
-ansible <server or group> -i <inventory> -m <module> -a <module-argus>
-
-ansible-playbook <play yaml file> -i <inventory>
+Han Yi @ 2015
