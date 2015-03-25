@@ -1,0 +1,11 @@
+iptables_logging: yes
+
+iptables_deny_all: yes
+
+iptables_allowed_tcp_ports: [22, 80, 443]
+iptables_forwarded_tcp_ports: []
+
+iptables_allowed_udp_ports: []
+iptables_forwarded_udp_ports: []
+
+iptables_raw_rules: []
