@@ -3,17 +3,26 @@
   hosts: webservers
   user: vagrant
   sudo: true
+  vars:
+   key_file: /etc/nginx/ssl/nginx.key
+   cert_file: /etc/nginx/ssl/nginx.crt
+   conf_file: /etc/nginx/sites-available/default
+   server_name: localhost
   tasks:
     - name: install nginx
       apt: name=nginx update_cache=yes
+
     - name: copy nginx config file
       copy: src=files/nginx.conf dest=/etc/nginx/sites-available/default
+
     - name: enable configuration
       file: >
         dest=/etc/nginx/sites-enabled/default
         src=/etc/nginx/sites-available/default
         state=link
+
     - name: copy index.html
       copy: src=files/index.html dest=/usr/share/nginx/html/index.html mode=0644
+
     - name: restart nginx
       service: name=nginx state=restarted
