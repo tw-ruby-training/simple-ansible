@@ -4,8 +4,9 @@
   sudo: true
   roles:
     - role: ruby
-    - role: nginx
     - role: memcached
+    - role: mysql
+    - role: nginx
 
   vars:
     - rbenv_root: /usr/local/rbenv
