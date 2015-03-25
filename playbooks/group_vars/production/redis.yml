@@ -1,0 +1,4 @@
+---
+redis:
+  host: pennsylvania.example.com
+  port: 6379
