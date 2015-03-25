@@ -1,0 +1,5 @@
+---
+- name: install memcached
+  apt: name=memcached update_cache=yes
+- name: restart memcached
+  service: name=memcached state=restarted
