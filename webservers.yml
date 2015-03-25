@@ -2,5 +2,3 @@
 - name: Configure webserver
   hosts: webservers
   sudo: true
-  roles:
-    - { role: sdnny.contrail_redis }

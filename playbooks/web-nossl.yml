@@ -8,14 +8,19 @@
       yum: name=libselinux-python
     - name: install nginx
       yum: name=nginx.x86_64 state=latest
+      notify: restart nginx
     - name: copy nginx config file
       copy: src=files/sites-available dest=/etc/nginx/ 
+      notify: restart nginx
     - name: enable configuration
       file: >
         dest=/etc/nginx/sites-enabled/default
         src=/etc/nginx/sites-available/default
         state=directory
+      notify: restart nginx
     - name: copy index.html
       copy: src=files/index.html dest=/usr/share/nginx/html/index.html mode=0644
+      notify: restart nginx
+  handlers:
     - name: restart nginx
       service: name=nginx state=restarted
