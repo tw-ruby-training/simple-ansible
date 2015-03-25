@@ -4,6 +4,7 @@
   sudo: true
   roles:
     - role: ruby
+    - role: nginx
 
   vars:
     - rbenv_root: /usr/local/rbenv

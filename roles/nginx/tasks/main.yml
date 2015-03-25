@@ -1,0 +1,7 @@
+---
+- name: Configure apt repository for nginx
+  command: echo -e "deb http://nginx.org/packages/debian/ trusty nginx \n deb-src http://nginx.org/packages/debian/ trusty nginx" >> /etc/apt/sources.list
+
+- name: Install nginx
+  apt: name=nginx state=latest
+  notify: restart nginx
