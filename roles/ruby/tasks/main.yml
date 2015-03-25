@@ -2,7 +2,10 @@
 # Install rbenv and ruby
 
 - name: rbenv | install build depends
-  apt: pkg=git state=latest install_recommends=no
+  apt: pkg={{ item }} state=latest install_recommends=no
+  with_items:
+    - git
+    - libssl-dev
 
 - name: rbenv | update rbenv repo
   git: repo=https://github.com/sstephenson/rbenv.git dest={{ rbenv_root }}
@@ -51,6 +54,3 @@
 - name: rbenv | rehash
   shell: RBENV_ROOT={{ rbenv_root }} rbenv rehash
   when: ruby_installed|failed
-
-- name: rbenv | set gemrc
-  copy: src=templates/gemrc dest=/root/.gemrc owner=root group=root mode=0644
