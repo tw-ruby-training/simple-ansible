@@ -11,7 +11,11 @@
     src=/etc/nginx/sites-available/default
     state=link
   notify:
-      - restart nginx
+    - restart nginx
+- name: ensure html directory exists
+  file: path=/usr/share/nginx/html state=directory
+  notify:
+    - restart nginx
 - name: copy index.html
   copy: src={{ index_file }} dest=/usr/share/nginx/html/index.html mode=0644
   notify:

@@ -2,4 +2,4 @@
 
 ansible <server or group> -i <inventory> -m <module> -a <module-argus>
 
-ansible-playbook <play yaml file> -i <inventory>
+ansible-playbook playbook/web-nossl.yml --ask-pass --ask-sudo-pass
