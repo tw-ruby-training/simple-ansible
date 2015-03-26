@@ -1,6 +1,6 @@
 - name: Install MySQL server and client
   apt: pkg={{ item }}
-  sudo: yes
+  sudo: true
   with_items:
     - mysql-common
     - mysql-server
