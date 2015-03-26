@@ -1,6 +1,7 @@
 - name: install iptables
   yum: name=iptables state=latest
 - name: rules
+  sudo: true
   template: src=etc/iptables.rules.j2 dest=/etc/iptables.rules mode=0744
   notify:
     - enable iptables

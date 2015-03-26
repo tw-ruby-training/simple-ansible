@@ -1,9 +1,17 @@
+- name: copy nginx repo
+  sudo: true
+  copy: src=nginx.repo dest=/etc/yum.repos.d/nginx.repo
 - name: install nginx
+  sudo: true
   yum: name=nginx.x86_64 state=latest
   notify: restart nginx
 - name: copy nginx config file
   sudo: true
   copy: src=sites-available dest=/etc/nginx/ 
+  notify: restart nginx
+- name: create sites-enabled directory
+  sudo: true
+  file: path=/etc/nginx/sites-enabled state=directory
   notify: restart nginx
 - name: enable configuration
   sudo: true
@@ -13,5 +21,6 @@
     state=link
   notify: restart nginx
 - name: copy index.html
+  sudo: true
   copy: src=index.html dest=/usr/share/nginx/html/index.html mode=0644
   notify: restart nginx

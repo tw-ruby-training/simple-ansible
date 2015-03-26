@@ -1,4 +1,5 @@
 ---
 - name: install memcached
+  sudo: true
   yum: name=memcached.x86_64 state=latest
   notify: restart memcached

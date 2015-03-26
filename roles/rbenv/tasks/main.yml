@@ -1,5 +1,6 @@
 ---
 - name: install git
+  sudo: true
   yum: name=git.x86_64 state=latest
 - name: checkout rbenv
   git: repo=https://github.com/sstephenson/rbenv.git dest=~/.rbenv
@@ -8,7 +9,9 @@
 - name: install openssl
   sudo: true
   yum: name=openssl-devel state=latest
+- name: install build tools
+  sudo: true
+  yum: name="@Development tools" state=present
 - name: install ruby
   command: ~/.rbenv/bin/rbenv install --skip-existing 2.1.2
   notify: prepare rbenv init
-  notify: rbenv init

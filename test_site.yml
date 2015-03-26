@@ -1,36 +1,32 @@
 ---
-- name: common
+- name: install webservers
   hosts: production_servers
-  remote_user: twer
+  remote_user: vagrant
   roles:
     - common
-
-- name: install iptables
-  hosts: production_servers
-  remote_user: twer
-  roles:
     - iptables
-
-- name: install production_servers
-  hosts: production_servers
-  remote_user: twer
-  roles:
     - nginx
 
 - name: install database node
   hosts: production_servers
-  remote_user: twer
+  remote_user: vagrant
   roles:
+    - common
+    - iptables
     - mysql
 
 - name: install application node
   hosts: production_servers
-  remote_user: twer
+  remote_user: vagrant
   roles:
+    - common
+    - iptables
     - rbenv
 
 - name: install cache node
   hosts: production_servers
-  remote_user: twer
+  remote_user: vagrant
   roles:
+    - common
+    - iptables
     - memcached

@@ -1,4 +1,5 @@
 - name: prepare rbenv init
-  copy: src=files/rbenv.sh dest=~/ mode=0777
+  copy: src=rbenv.sh dest=~/rbenv.sh mode=0777
+  notify: rbenv init
 - name: rbenv init
   shell: ./rbenv.sh
