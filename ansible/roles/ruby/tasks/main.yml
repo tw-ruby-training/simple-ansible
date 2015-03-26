@@ -1,11 +1,24 @@
 ---
 # Install rbenv and ruby
 
+- name: update apt
+  command: apt-get update
+
 - name: rbenv | install build depends
   apt: pkg={{ item }} state=latest install_recommends=no
   with_items:
     - git
+    - autoconf
+    - bison
+    - build-essential
     - libssl-dev
+    - libyaml-dev
+    - libreadline6-dev
+    - zlib1g-dev
+    - libncurses5-dev
+    - libffi-dev
+    - libgdbm3
+    - libgdbm-dev
 
 - name: rbenv | update rbenv repo
   git: repo=https://github.com/sstephenson/rbenv.git dest={{ rbenv_root }}

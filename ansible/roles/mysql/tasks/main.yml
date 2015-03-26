@@ -1,10 +1,13 @@
 ---
+- name: update apt
+  command: apt-get update
+
 - name: Install mysql
   apt: name={{ item }}
   with_items:
-    - mysql-common-5.6
-    - mysql-server-5.6
-    - mysql-client-5.6
+    - mysql-common
+    - mysql-server
+    - mysql-client
 
 - name: Configure mysql
   copy: src=my.cnf dest=/etc/my.cnf
