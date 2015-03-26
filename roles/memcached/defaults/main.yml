@@ -1,0 +1,5 @@
+---
+memcached_version: "1.4.14-0ubuntu9"
+memcached_memory: 64
+memcached_port: 11211
+memcached_listen: 127.0.0.1

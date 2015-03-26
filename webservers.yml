@@ -3,4 +3,7 @@
   hosts: webservers
   sudo: true
   roles:
-    - { role: sdnny.contrail_redis }
+    - mysql
+    - ruby
+    - memcached
+    - nginx

@@ -1,0 +1,10 @@
+---
+- name: Configure the Brightbox APT repository
+  apt_repository: repo="ppa:brightbox/ruby-ng" state=present
+
+- name: Install Ruby
+  apt: pkg=ruby{{ ruby_version }} state=present
+
+- name: Install Ruby development packages
+  apt: pkg=ruby{{ ruby_version }}-dev state=present
+  when: ruby_development | bool
