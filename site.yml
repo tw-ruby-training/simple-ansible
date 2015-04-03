@@ -1,36 +1,30 @@
 ---
-- name: common
-  hosts: production_servers
-  remote_user: twer
-  roles:
-    - common
-
 - name: install iptables
-  hosts: production_servers
+  hosts: all
   remote_user: twer
   roles:
     - iptables
 
-- name: install production_servers
-  hosts: production_servers
+- name: install web
+  hosts: web
   remote_user: twer
   roles:
     - nginx
 
 - name: install database node
-  hosts: production_servers
+  hosts: db
   remote_user: twer
   roles:
     - mysql
 
 - name: install application node
-  hosts: production_servers
+  hosts: app
   remote_user: twer
   roles:
     - rbenv
 
 - name: install cache node
-  hosts: production_servers
+  hosts: cache
   remote_user: twer
   roles:
     - bennojoy.memcached

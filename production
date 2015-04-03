@@ -1,0 +1,11 @@
+[web]
+web ansible_ssh_host=10.17.7.12 ansible_ssh_port=22 ansible_ssh_user=twer ansible_ssh_pass=P@ss123456 ansible_sudo_pass=P@ss123456
+
+[app]
+app ansible_ssh_host=10.17.7.12 ansible_ssh_port=22 ansible_ssh_user=twer ansible_ssh_pass=P@ss123456 ansible_sudo_pass=P@ss123456
+
+[db]
+db ansible_ssh_host=10.17.7.12 ansible_ssh_port=22 ansible_ssh_user=twer ansible_ssh_pass=P@ss123456 ansible_sudo_pass=P@ss123456
+
+[cache]
+cache ansible_ssh_host=10.17.7.12 ansible_ssh_port=22 ansible_ssh_user=twer ansible_ssh_pass=P@ss123456 ansible_sudo_pass=P@ss123456

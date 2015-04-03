@@ -1,3 +1,0 @@
-- name: install libselinux-python
-  sudo: true
-  yum: name=libselinux-python state=latest
