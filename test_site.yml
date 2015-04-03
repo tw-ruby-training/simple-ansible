@@ -29,4 +29,4 @@
   roles:
     - common
     - iptables
-    - memcached
+    - bennojoy.memcached

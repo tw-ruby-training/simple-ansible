@@ -33,4 +33,4 @@
   hosts: production_servers
   remote_user: twer
   roles:
-    - memcached
+    - bennojoy.memcached
