@@ -17,7 +17,7 @@
   sudo: yes
 
 - name: Ruby | Take Ownership of Directory
-  shell: /bin/chown -hR vagrant:vagrant  /tmp/ruby-{{ ruby_fversion }}
+  shell: /bin/chown -hR twer:twer  /tmp/ruby-{{ ruby_fversion }}
   sudo: yes
   when: result|failed
 

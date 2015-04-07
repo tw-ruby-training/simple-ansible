@@ -41,13 +41,3 @@
     name={{ item }}
     state=present
   with_items: mysql.databases
-
-- name: (Re)Create database users
-  mysql_user:
-    login_user=root
-    login_password={{ mysql.root_password }}
-    name={{ item.key }}
-    password={{ item.value.password }}
-    priv={{ item.value.priv }}
-    state={{ item.value.state | default('present') }}
-  with_dict: mysql.users
