@@ -3,5 +3,6 @@ mysql_config_file: /etc/my.cnf
 __mysql_packages:
   - mysql
   - mysql-server
+  - mysql-devel
   - MySQL-python
 mysql_socket: /var/lib/mysql/mysql.sock
