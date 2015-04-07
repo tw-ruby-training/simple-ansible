@@ -1,43 +1,23 @@
-- name: Install MySQL server and client
-  apt: pkg={{ item }}
-  sudo: true
-  with_items:
-    - mysql-common
-    - mysql-server
-    - mysql-client
-    - python-mysqldb
+---
+# Include variables and define needed variables.
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
 
-- name: Change root user password on first run or when mysql.current_root_password was overrided with -e option
-  mysql_user:
-    login_user=root
-    login_password={{ mysql.current_root_password }}
-    name=root
-    password={{ mysql.root_password }}
-    priv=*.*:ALL,GRANT
-    host={{ item }}
-  with_items:
-    - "{{ ansible_hostname }}"
-    - 127.0.0.1
-    - ::1
-    - localhost
-  ignore_errors: true
+- name: Define mysql_packages.
+  set_fact:
+    mysql_packages: "{{ __mysql_packages | list }}"
+  when: mysql_packages is not defined
 
-- name: Copy MySQL settings file
-  template:
-    src=my.cnf.j2
-    dest=/etc/mysql/conf.d/my.cnf
-    owner=root
-    group=root
-    mode=0644
-  sudo: yes
-  notify: mysql-restart
+# Setup/install tasks.
+- include: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
 
-- meta: flush_handlers
+- include: setup-Debian.yml
+  when: ansible_os_family == 'Debian'
 
-- name: (Re)Create databases
-  mysql_db:
-    login_user=root
-    login_password={{ mysql.root_password }}
-    name={{ item }}
-    state=present
-  with_items: mysql.databases
+# Configure MySQL.
+- include: configure.yml
+- include: secure-installation.yml
+- include: databases.yml
+- include: users.yml
+- include: replication.yml

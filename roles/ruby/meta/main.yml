@@ -1,16 +1,22 @@
 ---
 galaxy_info:
-  author: Pablo Castillo
-  company: Crush & Lovely
-  description: Ruby for Ubuntu 12.04LTS
+  author: "Joshua Lund"
+  description: "Ansible role that compiles and installs Ruby (https://www.ruby-lang.org) and Bundler (http://bundler.io)."
   license: MIT
   min_ansible_version: 1.4
   platforms:
+    - name: Amazon
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: EL
+      versions:
+        - all
     - name: Ubuntu
       versions:
-        - precise
+        - all
   categories:
     - development
-    - web
-    - system
 dependencies: []

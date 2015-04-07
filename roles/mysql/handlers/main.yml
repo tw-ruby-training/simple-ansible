@@ -1,21 +1,3 @@
-- name: mysql-start
-  service:
-    name=mysql
-    start=started
-  sudo: yes
-
-- name: mysql-stop
-  service:
-    name=mysql
-    start=stopped
-
-- name: mysql-reload
-  service:
-    name=mysql
-    state=reloaded
-
-- name: mysql-restart
-  service:
-    name=mysql
-    state=restarted
-  sudo: yes
+---
+- name: restart mysql
+  service: "name={{ mysql_daemon }} state=restarted"

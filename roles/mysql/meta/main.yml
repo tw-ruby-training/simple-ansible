@@ -1,21 +1,22 @@
 ---
-
-allow_duplicates: no
-
-dependencies:
-  - { role: andyceo.preconf }
+dependencies: []
 
 galaxy_info:
-  author: andyceo
-  description: Install MySQL and allow to adjust some MySQL settings. Also allow to create databases, users and handle privilleges.
+  author: geerlingguy
+  description: MySQL server for RHEL/CentOS 6.x and Debian/Ubuntu
+  company: "Midwestern Mac, LLC"
   license: "license (BSD, MIT)"
-  min_ansible_version: 1.5
+  min_ansible_version: 1.4
   platforms:
+  - name: EL
+    versions:
+    - 6
+    - 7
   - name: Ubuntu
     versions:
-    - trusty
+    - all
+  - name: Debian
+    versions:
+    - all
   categories:
     - database
-    - database:sql
-    - development
-    - system
