@@ -1,7 +1,7 @@
 ---
 mysql_user_home: /root
 mysql_root_username: root
-mysql_root_password: r0ys1ngh4m
+mysql_root_password: ''
 
 mysql_enabled_on_startup: yes
 
@@ -15,6 +15,7 @@ mysql_packages:
   - mysql
   - mysql-server
   - MySQL-python
+  - mysql-devel
 
 # MySQL connection settings.
 mysql_port: "3306"

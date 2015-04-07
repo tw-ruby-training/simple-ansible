@@ -2,6 +2,37 @@
 - name: update yum repo
   sudo: True
   yum: name=* state=latest
+
 - name: update libselinux-python
   yum: name=libselinux-python state=present
   when: ansible_os_family == "RedHat"
+
+- name: setup deploy
+  sudo: True
+  file:
+    owner: vagrant
+    group: vagrant
+    mode: 0744
+    path: /var/www
+    state: directory
+  ignore_errors: True
+
+- name: setup unicorn log directory
+  sudo: True
+  file:
+    owner: vagrant
+    group: vagrant
+    mode: 0744
+    path: /var/log/unicorn
+    state: directory
+  ignore_errors: True
+
+- name: setup unicorn pid file
+  sudo: True
+  file:
+    owner: vagrant
+    group: vagrant
+    mode: 0744
+    path: /var/run/unicorn.pid
+    state: touch
+  ignore_errors: True
