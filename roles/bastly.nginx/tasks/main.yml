@@ -1,0 +1,87 @@
+---
+# Variable setup.
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Define nginx_user.
+  set_fact:
+    nginx_user: "{{ __nginx_user }}"
+  when: nginx_user is not defined
+
+# Nginx setup.
+- name: Enable nginx repo (RedHat).
+  sudo: True
+  template:
+    src: nginx.repo.j2
+    dest: /etc/yum.repos.d/nginx.repo
+    owner: root
+    group: root
+    mode: 0644
+  when: ansible_os_family == 'RedHat'
+
+- name: Ensure nginx is installed (RedHat).
+  yum: pkg=nginx state=installed enablerepo=nginx
+  when: ansible_os_family == 'RedHat'
+
+- name: Ensure nginx is installed (Debian).
+  apt: pkg=nginx state=installed
+  when: ansible_os_family == 'Debian'
+
+- name: Create nginx configuration sites-available directory.
+  file: 
+    path: /etc/nginx/sites-available
+    owner: "{{ __nginx_user }}"
+    group: "{{ __nginx_user }}"
+    mode: 0644
+    state: directory
+
+- name: Create nginx configuration sites-enabled directory.
+  file: 
+    path: /etc/nginx/sites-enabled
+    owner: "{{ __nginx_user }}"
+    group: "{{ __nginx_user }}"
+    mode: 0644
+    state: directory
+
+- name: Create nginx log directory.
+  file: 
+    path: "/var/log/{{ nginx_conf }}"
+    owner: "{{ __nginx_user }}"
+    group: "{{ __nginx_user }}"
+    mode: 0644
+    state: directory
+
+- name: Copy nginx configuration in place.
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    owner: "{{ __nginx_user }}"
+    group: "{{ __nginx_user }}"
+    mode: 0644
+  notify: restart nginx
+
+- name: Copy site configuration in place.
+  template:
+    src: "{{ nginx_conf }}"
+    dest: "/etc/nginx/sites-available/{{ nginx_conf }}"
+    owner: "{{ __nginx_user }}"
+    group: "{{ __nginx_user }}"
+    mode: 0644
+
+- name: Link site configuration in place.
+  template:
+    src: "{{ nginx_conf }}"
+    dest: "/etc/nginx/sites-enabled/{{ nginx_conf }}"
+    owner: "{{ __nginx_user }}"
+    group: "{{ __nginx_user }}"
+    mode: 0644
+
+- name: Ensure nginx is started and enabled to start at boot.
+  service: name=nginx state=started enabled=yes
+
+- name: Remove default nginx config file (if configured).
+  file:
+    path: "{{ nginx_default_vhost_path }}"
+    state: absent
+  when: nginx_remove_default_vhost
+  notify: restart nginx

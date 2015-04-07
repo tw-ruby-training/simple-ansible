@@ -1,0 +1,7 @@
+---
+- name: update yum repo
+  sudo: True
+  yum: name=* state=latest
+- name: update libselinux-python
+  yum: name=libselinux-python state=present
+  when: ansible_os_family == "RedHat"

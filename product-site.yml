@@ -1,0 +1,30 @@
+---
+- name: install iptables
+  hosts: production
+  remote_user: twer
+  roles:
+    - iptables
+
+- name: install web
+  hosts: product-web
+  remote_user: twer
+  roles:
+    - bastly.nginx
+
+- name: install database node
+  hosts: product-db
+  remote_user: twer
+  roles:
+    - ben.mildren.percona_mysql
+
+- name: install application node
+  hosts: product-app
+  remote_user: twer
+  roles:
+    - geerlingguy.ruby
+
+- name: install cache node
+  hosts: product-cache
+  remote_user: twer
+  roles:
+    - bennojoy.memcached

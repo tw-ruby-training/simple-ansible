@@ -1,7 +1,11 @@
+- name: Install the selinux python module
+  yum: name=libselinux-python state=present
+  when: ansible_os_family == "RedHat"
 - name: install iptables
   yum: name=iptables state=latest
+  when: ansible_os_family == "RedHat"
 - name: rules
-  sudo: true
   template: src=etc/iptables.rules.j2 dest=/etc/iptables.rules mode=0744
+  when: ansible_os_family == "RedHat"
   notify:
     - enable iptables

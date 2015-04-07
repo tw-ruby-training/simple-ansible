@@ -1,4 +1,8 @@
 ---
+- name: Install development tools
+  yum: name="@Development tools" state=present
+  when: ansible_os_family == 'RedHat'
+
 - name: Install packages required to build ruby (RedHat).
   yum: "pkg={{ item }} state=installed"
   with_items:
@@ -51,6 +55,9 @@
     - rdoc
     - ruby
     # - testrb
+
+- name: Add ruby gem source
+  command: gem source --add http://ruby.taobao.org
 
 - name: Install the Bundler Gem.
   gem: name=bundler state=present user_install=no

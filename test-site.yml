@@ -1,0 +1,35 @@
+--- 
+- name: common
+  hosts: test
+  remote_user: vagrant
+  sudo: True
+  roles:
+    - common
+
+- name: install web
+  hosts: test-web
+  sudo: True
+  remote_user: vagrant
+  roles:
+    - bastly.nginx
+
+- name: install database node
+  hosts: test-db
+  remote_user: vagrant
+  sudo: True
+  roles:
+    - mwanjura.mysql
+
+- name: install application node
+  hosts: test-app
+  remote_user: vagrant
+  sudo: True
+  roles:
+    - geerlingguy.ruby
+
+- name: install cache node
+  hosts: test-cache
+  remote_user: vagrant
+  sudo: True
+  roles:
+    - bennojoy.memcached
