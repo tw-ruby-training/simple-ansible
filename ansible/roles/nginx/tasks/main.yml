@@ -6,5 +6,5 @@
   apt: name=nginx state=latest
 
 - name: Copy nginx configuration
-  copy: src=default.conf dest=/etc/nginx/conf.d/default.conf
+  copy: src=zhaocaimao.conf dest=/etc/nginx/sites-enabled/zhaocaimao.conf
   notify: restart nginx
