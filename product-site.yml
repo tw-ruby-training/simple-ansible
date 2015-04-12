@@ -1,12 +1,14 @@
----
-- name: install iptables
+--- 
+- name: common
   hosts: production
   remote_user: twer
+  sudo: True
   roles:
-    - iptables
+    - common
 
 - name: install web
   hosts: product-web
+  sudo: True
   remote_user: twer
   roles:
     - bastly.nginx
@@ -14,17 +16,20 @@
 - name: install database node
   hosts: product-db
   remote_user: twer
+  sudo: True
   roles:
-    - ben.mildren.percona_mysql
+    - mwanjura.mysql
 
 - name: install application node
   hosts: product-app
   remote_user: twer
+  sudo: True
   roles:
     - geerlingguy.ruby
 
 - name: install cache node
   hosts: product-cache
   remote_user: twer
+  sudo: True
   roles:
     - bennojoy.memcached

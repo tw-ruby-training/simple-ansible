@@ -10,9 +10,9 @@
 - name: setup deploy
   sudo: True
   file:
-    owner: vagrant
-    group: vagrant
-    mode: 0744
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
     path: /var/www
     state: directory
   ignore_errors: True
@@ -20,18 +20,26 @@
 - name: setup unicorn log directory
   sudo: True
   file:
-    owner: vagrant
-    group: vagrant
+    owner: "{{ user }}"
+    group: "{{ user }}"
     mode: 0744
     path: /var/log/unicorn
     state: directory
   ignore_errors: True
 
+- name: setup var run directory
+  sudo: True
+  file:
+    mode: 0777
+    path: /var/run
+    state: directory
+  ignore_errors: True  
+
 - name: setup unicorn pid file
   sudo: True
   file:
-    owner: vagrant
-    group: vagrant
+    owner: "{{ user }}"
+    group: "{{ user }}"
     mode: 0744
     path: /var/run/unicorn.pid
     state: touch

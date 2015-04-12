@@ -11,16 +11,16 @@ test-db ansible_ssh_host=192.168.33.10 ansible_ssh_port=22 ansible_ssh_user=vagr
 test-cache ansible_ssh_host=192.168.33.10 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_private_key_file=/Users/twer/.vagrant.d/insecure_private_key
 
 [product-web]
-product-web ansible_ssh_host=10.17.7.12 ansible_ssh_port=22 ansible_ssh_user=twer ansible_ssh_pass=P@ss123456 ansible_sudo_pass=P@ss123456
+product-web ansible_ssh_host=10.17.7.12 ansible_ssh_port=22 ansible_ssh_user=twer ansible_ssh_private_key_file=/Users/twer/.ssh/id_rsa
 
 [product-app]
-product-app ansible_ssh_host=10.17.7.12 ansible_ssh_port=22 ansible_ssh_user=twer ansible_ssh_pass=P@ss123456 ansible_sudo_pass=P@ss123456
+product-app ansible_ssh_host=10.17.7.12 ansible_ssh_port=22 ansible_ssh_user=twer ansible_ssh_private_key_file=/Users/twer/.ssh/id_rsa
 
 [product-db]
-product-db ansible_ssh_host=10.17.7.12 ansible_ssh_port=22 ansible_ssh_user=twer ansible_ssh_pass=P@ss123456 ansible_sudo_pass=P@ss123456
+product-db ansible_ssh_host=10.17.7.12 ansible_ssh_port=22 ansible_ssh_user=twer ansible_ssh_private_key_file=/Users/twer/.ssh/id_rsa
 
 [product-cache]
-product-cache ansible_ssh_host=10.17.7.12 ansible_ssh_port=22 ansible_ssh_user=twer ansible_ssh_pass=P@ss123456 ansible_sudo_pass=P@ss123456
+product-cache ansible_ssh_host=10.17.7.12 ansible_ssh_port=22 ansible_ssh_user=twer ansible_ssh_private_key_file=/Users/twer/.ssh/id_rsa
 
 [test:children]
 test-web
