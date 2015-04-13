@@ -1,0 +1,5 @@
+---
+- name: create appilcaton folder
+  sudo: yes
+  command: mkdir -p /var/www
+  command: chown twer /var/www/
