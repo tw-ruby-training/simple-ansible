@@ -1,3 +1,6 @@
 ---
 - name: Install git
   apt: name=git state=latest
+
+- name: Install Bundler
+  shell: gem install bundler
