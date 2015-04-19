@@ -7,3 +7,4 @@
     - nginx
     - memcached
     - mysql
+    - ansible-role-git

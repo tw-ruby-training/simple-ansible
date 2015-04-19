@@ -17,5 +17,7 @@
 - name: enable configuration
   file: dest=/etc/nginx/sites-enabled/default src={{ conf_file }} state=link
   notify: restart nginx
+- name: create directories for nginx index
+  file: path=/usr/share/nginx/html state=directory
 - name: copy index.html
   copy: src=index.html dest=/usr/share/nginx/html/index.html mode=0644
