@@ -3,9 +3,9 @@
   hosts: webservers
   sudo: True
   roles:
-    - zhaocaimao
     - ruby
     - nginx
     - memcached
     - mysql
     - ansible-role-git
+    - zhaocaimao
