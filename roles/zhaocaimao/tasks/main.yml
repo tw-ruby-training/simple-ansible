@@ -1,11 +1,26 @@
 ---
 # Configure for zhaocaimao
 
-- name: create directories deploy zhaocaimao
-  file: path=/var/www state=directory owner=vagrant mode=0775
-
 - name: install mysql2 gem dependencies
   apt: pkg={{item}} state=installed update_cache=yes
   with_items:
   - mysql-client
   - libmysqlclient-dev
+
+- name: create directories deploy zhaocaimao
+  file: path=/var/www state=directory owner=vagrant mode=0775
+
+- name: make directory /run can be modified
+  file: path=/run state=directory owner=vagrant mode=0775
+
+- name: copy zhaocaimao nginx config file
+  copy: src=zhaocaimao.conf dest=/etc/nginx/sites-available/zhaocaimao.conf
+  notify: restart nginx
+
+- name: remove files from site enable directory
+  shell: rm -f /etc/nginx/sites-enabled/*
+  notify: restart nginx
+
+- name: enable zhaocaimao nginx configuration
+  file: dest=/etc/nginx/sites-enabled/zhaocaimao src=/etc/nginx/sites-available/zhaocaimao.conf state=link
+  notify: restart nginx
