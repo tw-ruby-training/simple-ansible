@@ -3,6 +3,7 @@
   hosts: webservers
   sudo: True
   roles:
+    - zhaocaimao
     - ruby
     - nginx
     - memcached

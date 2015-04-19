@@ -1,0 +1,11 @@
+---
+# Configure for zhaocaimao
+
+- name: create directories deploy zhaocaimao
+  file: path=/var/www state=directory owner=vagrant mode=0775
+
+- name: install mysql2 gem dependencies
+  apt: pkg={{item}} state=installed update_cache=yes
+  with_items:
+  - mysql-client
+  - libmysqlclient-dev
