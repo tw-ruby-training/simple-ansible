@@ -5,6 +5,15 @@
 - name: Install nginx
   apt: name=nginx state=latest
 
+- name: Creates log directory
+  file: path=/var/log/zhaocaimao state=directory
+
+- name: Change permission for web root
+  command: chown twer:twer -R /var/www/
+
+- name: Change permission for unicorn log dir
+  command: chown twer:twer -R /var/run/
+
 - name: Copy nginx configuration
   copy: src=zhaocaimao.conf dest=/etc/nginx/sites-enabled/zhaocaimao.conf
   notify: restart nginx
