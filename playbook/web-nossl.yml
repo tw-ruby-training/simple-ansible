@@ -4,5 +4,9 @@
   sudo: true
   roles:
     - joshualund.ruby-2_1
-    - { role: nginx, config_src: 'files/nginx.conf', index_file: 'files/index.html' }
+    - nginx
     - memcached
+    # - mysql
+  tasks:
+    - name: install git
+      apt: name=git update_cache=yes
