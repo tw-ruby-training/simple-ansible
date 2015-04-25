@@ -1,0 +1,9 @@
+---
+- name: download mysql repo
+  get_url: url=http://dev.mysql.com/get/mysql-apt-config_0.3.5-1ubuntu12.04_all.deb dest=/tmp/mysql-apt-config_0.3.5-1ubuntu12.04_all.deb
+- name: install mysql repo
+  command: dpkg -i /tmp/mysql-apt-config_0.3.5-1ubuntu12.04_all.deb
+- name: update apt
+  apt: update_cache=yes cache_valid_time=1
+- name: insatll mysql
+  apt: name=mysql-server-5.6

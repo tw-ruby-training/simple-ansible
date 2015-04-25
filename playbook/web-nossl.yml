@@ -6,7 +6,7 @@
     - joshualund.ruby-2_1
     - nginx
     - memcached
-    # - mysql
+    - mysql
   tasks:
     - name: install git
       apt: name=git update_cache=yes
