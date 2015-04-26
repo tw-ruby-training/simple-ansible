@@ -7,3 +7,5 @@
   apt: update_cache=yes cache_valid_time=1
 - name: insatll mysql
   apt: name=mysql-server-5.6
+- name: install mysql client dev
+  apt: name=libmysqlclient-dev
