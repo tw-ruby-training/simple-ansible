@@ -8,4 +8,5 @@
     - nginx
     - memcached
     - mysql
+    - DavidWittman.redis
     - system
